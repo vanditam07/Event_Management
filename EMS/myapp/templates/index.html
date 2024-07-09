@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {% block content %}
+<!-- Load static tag at the top of the block -->
+{% load static %}
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <h1 class="hero-title">Welcome to the Event Management System</h1>
+    <p class="hero-subtitle">
+      Effortlessly organize and manage your events with our intuitive platform.
+    </p>
+    <a href="{% url 'event_list' %}" class="btn btn-primary">Explore Events</a>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+  <div class="container">
+    <div class="feature">
+      <i class="fas fa-calendar-alt feature-icon"></i>
+      <h2 class="feature-title">Event Calendar</h2>
+      <p class="feature-text">
+        Stay organized with a comprehensive event calendar that keeps track of
+        all your upcoming events.
+      </p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-users feature-icon"></i>
+      <h2 class="feature-title">RSVP Management</h2>
+      <p class="feature-text">
+        Easily manage attendee RSVPs and keep track of guest lists for your
+        events.
+      </p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-map-marker-alt feature-icon"></i>
+      <h2 class="feature-title">Venue Selection</h2>
+      <p class="feature-text">
+        Find the perfect venue for your event from our curated selection of top
+        locations.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Latest Events Section -->
+<section class="latest-events">
+  <div class="container">
+    <h2 class="section-title">Latest Events</h2>
+    <div class="event-list">
+      {% for event in events %}
+      <div class="event-card">
+        <h3 class="event-title">{{ event.title }}</h3>
+        <p class="event-info">
+          <i class="far fa-calendar-alt"></i> {{ event.date }}
+        </p>
+        <a
+          href="{% url 'event_detail' event_id=event.id %}"
+          class="btn btn-secondary"
+          >View Details</a
+        >
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

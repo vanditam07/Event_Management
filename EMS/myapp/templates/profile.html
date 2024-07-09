@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <h1>Welcome, {{ user_profile.user.username }}</h1>
+  <p>Email: {{ user_profile.user.email }}</p>
+
+  {% if user_profile %}
+  <!-- Display profile information if profile exists -->
+  <h2>User Profile Details</h2>
+  <p>Bio: {{ user_profile.bio }}</p>
+  <!-- Add more profile fields as needed -->
+  {% else %}
+  <p>No profile information available</p>
+  {% endif %}
+
+  <!-- RSVP'd Events -->
+  <h2>RSVP'd Events</h2>
+  {% if rsvp_events %}
+  <ul class="rsvp-events-list">
+    {% for event in rsvp_events %}
+    <li>{{ event.title }} - {{ event.date }}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No events RSVP'd</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block content %}
+<!-- Load static tag at the top of the block -->
+{% load static %}
+
+<!-- Event List -->
+<div class="container">
+  <h1 class="heading-primary">Upcoming Events</h1>
+  <div class="event-list">
+    {% for event in events %}
+    <div class="event-card">
+      <div class="event-info">
+        <h2 class="event-title">{{ event.title }}</h2>
+        <p class="event-date">
+          <i class="far fa-calendar-alt"></i> {{ event.date }}
+        </p>
+      </div>
+      <a
+        href="{% url 'event_detail' event_id=event.id %}"
+        class="btn btn-primary"
+        >View Details</a
+      >
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
